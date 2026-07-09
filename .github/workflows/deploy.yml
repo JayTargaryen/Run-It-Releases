@@ -1,0 +1,27 @@
+name: Deploy to itch.io
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'RunIt-Windows-Setup-v*.exe'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Get Version
+        id: get_version
+        run: echo "version=$(jq -r .version update.json)" >> $GITHUB_OUTPUT
+
+      - name: Setup Butler
+        uses: remarkablegames/setup-butler@v3
+
+      - name: Deploy Windows Installer to itch.io
+        run: butler push ./RunIt-Windows-Setup-v${{ steps.get_version.outputs.version }}.exe JaysRealmGames/run-it:windows-installer --userversion ${{ steps.get_version.outputs.version }}
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
