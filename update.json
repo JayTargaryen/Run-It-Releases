@@ -1,8 +1,8 @@
 {
     "version":  "2.9",
     "versionLabel":  "Alpha-Version 2.9",
-    "installerUrl":  "https://raw.githubusercontent.com/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Setup-v2.9.exe",
-    "portableZipUrl":  "https://raw.githubusercontent.com/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Prototype.zip",
+    "installerUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Setup-v2.9.exe",
+    "portableZipUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Prototype.zip",
     "releaseNotesUrl":  "https://github.com/JayTargaryen/Run-It-Releases",
     "publishedAt":  "2026-07-12T08:53:19Z"
 }
