@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'RunIt-Windows-Setup-v*.exe'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
@@ -13,6 +14,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Get Version
         id: get_version
