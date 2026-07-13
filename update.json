@@ -1,8 +1,8 @@
 {
-    "version":  "3.0",
-    "versionLabel":  "Alpha-Version 3.0",
-    "installerUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Setup-v3.0.exe",
+    "version":  "3.1",
+    "versionLabel":  "Alpha-Version 3.1",
+    "installerUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Setup-v3.1.exe",
     "portableZipUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Prototype.zip",
     "releaseNotesUrl":  "https://github.com/JayTargaryen/Run-It-Releases",
-    "publishedAt":  "2026-07-12T21:43:55Z"
+    "publishedAt":  "2026-07-13T00:44:55Z"
 }
