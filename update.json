@@ -1,10 +1,10 @@
 {
-    "version":  "3.1",
-    "versionLabel":  "Alpha-Version 3.1",
-    "installerUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Setup-v3.1.exe",
-    "installerSha256":  "093F908FE0842F287B4D031C5C4D56936CAEC83E28790799D8E1F4852D3DA7E6",
+    "version":  "3.2",
+    "versionLabel":  "Alpha-Version 3.2",
+    "installerUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Setup-v3.2.exe",
+    "installerSha256":  "43E88F9C353F15BC3214D93A6205493D6AFB8B2EE5A37F3B81EF10A53D63DE18",
     "portableZipUrl":  "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-Windows-Prototype.zip",
-    "portableZipSha256":  "A9E9B7FEB22138135F2BB03AE5FE48DFBF1EAE31F0849AAE6BB2CA29F20CA16A",
+    "portableZipSha256":  "F96DF6B442A6147C0EE911911A5E6845BD75F33DB141704638F7430849607DE7",
     "releaseNotesUrl":  "https://github.com/JayTargaryen/Run-It-Releases",
-    "publishedAt":  "2026-07-15T22:11:13Z"
+    "publishedAt":  "2026-07-16T17:12:34Z"
 }
