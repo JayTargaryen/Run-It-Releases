@@ -1,7 +1,7 @@
 {
   "version": "3.2",
   "versionLabel": "Alpha-Version 3.2",
-  "macDownloadUrl": "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-macOS-v3.2.zip",
+  "macDownloadUrl": "https://media.githubusercontent.com/media/JayTargaryen/Run-It-Releases/main/RunIt-macOS.zip",
   "macDownloadSha256": "6E1E234C5E1D0E715EE66C4C6ECB92AD2E1C601E92663D6290715CE4EC30B387",
   "releaseNotesUrl": "https://github.com/JayTargaryen/Run-It-Releases",
   "publishedAt": "2026-07-16T19:34:22Z",
