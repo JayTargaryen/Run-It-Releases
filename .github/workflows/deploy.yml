@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - 'RunIt-Windows-Setup-v*.exe'
+      - 'RunIt-macOS-v*.zip'
+      - 'update.json'
+      - 'update-macos.json'
       - '.github/workflows/deploy.yml'
 
 jobs:
@@ -19,12 +22,19 @@ jobs:
 
       - name: Get Version
         id: get_version
-        run: echo "version=$(jq -r .version update.json)" >> $GITHUB_OUTPUT
+        run: |
+          echo "windows_version=$(jq -r .version update.json)" >> "$GITHUB_OUTPUT"
+          echo "macos_version=$(jq -r .version update-macos.json)" >> "$GITHUB_OUTPUT"
 
       - name: Setup Butler
         uses: remarkablegames/setup-butler@v3
 
       - name: Deploy Windows Installer to itch.io
-        run: butler push ./RunIt-Windows-Setup-v${{ steps.get_version.outputs.version }}.exe JaysRealmGames/run-it:windows-installer --userversion ${{ steps.get_version.outputs.version }}
+        run: butler push ./RunIt-Windows-Setup-v${{ steps.get_version.outputs.windows_version }}.exe JaysRealmGames/run-it:windows-installer --userversion ${{ steps.get_version.outputs.windows_version }}
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+
+      - name: Deploy macOS App to itch.io
+        run: butler push ./RunIt-macOS-v${{ steps.get_version.outputs.macos_version }}.zip JaysRealmGames/run-it:mac --userversion ${{ steps.get_version.outputs.macos_version }}
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
