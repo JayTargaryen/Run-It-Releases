@@ -5,11 +5,15 @@ on:
     branches:
       - main
     paths:
-      - 'RunIt-Windows-Setup-v*.exe'
-      - 'RunIt-macOS-v*.zip'
+      - 'RunIt-Windows-Setup.exe'
+      - 'RunIt-Windows-Prototype.zip'
+      - 'RunIt-macOS.zip'
       - 'update.json'
       - 'update-macos.json'
       - '.github/workflows/deploy.yml'
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -26,15 +30,38 @@ jobs:
           echo "windows_version=$(jq -r .version update.json)" >> "$GITHUB_OUTPUT"
           echo "macos_version=$(jq -r .version update-macos.json)" >> "$GITHUB_OUTPUT"
 
+      - name: Validate Release Metadata
+        run: |
+          test "${{ steps.get_version.outputs.windows_version }}" = "${{ steps.get_version.outputs.macos_version }}"
+          test -f RunIt-Windows-Setup.exe
+          test -f RunIt-Windows-Prototype.zip
+          test -f RunIt-macOS.zip
+
+      - name: Publish Stable GitHub Release Assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ steps.get_version.outputs.windows_version }}
+        run: |
+          tag="v${RELEASE_VERSION}"
+          gh release view "$tag" >/dev/null 2>&1 || \
+            gh release create "$tag" --title "Run It v${RELEASE_VERSION}" --generate-notes
+          gh release upload "$tag" \
+            RunIt-Windows-Setup.exe \
+            RunIt-Windows-Prototype.zip \
+            RunIt-macOS.zip \
+            update.json \
+            update-macos.json \
+            --clobber
+
       - name: Setup Butler
         uses: remarkablegames/setup-butler@v3
 
       - name: Deploy Windows Installer to itch.io
-        run: butler push ./RunIt-Windows-Setup-v${{ steps.get_version.outputs.windows_version }}.exe JaysRealmGames/run-it:windows-installer --userversion ${{ steps.get_version.outputs.windows_version }}
+        run: butler push ./RunIt-Windows-Setup.exe JaysRealmGames/run-it:windows-installer --userversion ${{ steps.get_version.outputs.windows_version }}
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
       - name: Deploy macOS App to itch.io
-        run: butler push ./RunIt-macOS-v${{ steps.get_version.outputs.macos_version }}.zip JaysRealmGames/run-it:mac --userversion ${{ steps.get_version.outputs.macos_version }}
+        run: butler push ./RunIt-macOS.zip JaysRealmGames/run-it:mac --userversion ${{ steps.get_version.outputs.macos_version }}
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
